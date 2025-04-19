@@ -27,7 +27,8 @@ def predict():
     data = [float(x) for x in request.form.values()]
     final_input = scaler.transform([data])
     output = model.predict(final_input)[0]
-    return render_template('home.html', prediction_text=f"Predicted House Price: {output}")
+    rounded_prediction = round(output, 7)
+    return render_template('home.html', prediction_text=f"Predicted House Price : ${rounded_prediction*100000}")
 
 
 if __name__ =="__main__":
